@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -10,8 +12,8 @@ body {
   color: white;
 }
 
-.container-l {
-  max-width: 400px;
+.container-s {
+  max-width: 450px;
   margin: 0 auto;
   position: absolute;
   top: 50%;
@@ -20,12 +22,12 @@ body {
   background-color: #2c2c2c;
   padding: 2rem;
   border-radius: 1.5rem;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   text-align: center;
 }
 
 .title {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: bold;
   color: #ffffff;
   margin-bottom: 1rem;
@@ -62,18 +64,18 @@ input::placeholder {
   color: #555;
 }
 
-.register-link {
+.login-link {
   color: #aaa;
   font-size: 0.95rem;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.register-link:hover {
+.login-link:hover {
   color: #5ca9f7;
 }
 
-.btn-iniciar {
+.btn-registrar {
   padding: 0.9rem;
   border: none;
   border-radius: 2rem;
@@ -84,6 +86,6 @@ input::placeholder {
   transition: background-color 0.3s ease;
 }
 
-.btn-iniciar:hover {
+.btn-registrar:hover {
   background-color: #4a90e2;
 }

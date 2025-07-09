@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { NavBar } from './components/navbar';
 import { Home } from './pages/Home/Home';
 import { LogIn } from './pages/LogIn/LogIn';
-import { UserProfile } from './pages/UserProfile/UserProfile'
+import { UserProfile } from './pages/UserProfile/UserProfile';
+import { SignIn } from './pages/SigIn/SigIn';
 function App() {
 
   return (
@@ -20,6 +21,7 @@ function App() {
           birthDate="27/12/02"
           lenguages={["JavaScrpit","Python", "C++"]}
           experience="2 años o mas"/>}/>
+          <Route path='/SigIn' element={<SignIn />} />
         </Routes>
       </Router>
     </div>
