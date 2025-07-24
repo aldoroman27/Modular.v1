@@ -4,14 +4,11 @@
   box-sizing: border-box;
 }
 
-body {
+.container-login {
+  max-width: 400px;
   font-family: "Bitter", serif;
   background-color: #111;
   color: white;
-}
-
-.container-l {
-  max-width: 400px;
   margin: 0 auto;
   position: absolute;
   top: 50%;

@@ -2,7 +2,7 @@ import './LogIn.css';
 
 export const LogIn = () => {
   return (
-    <div className="container-l">
+    <div className="container-login">
       <h2 className="subtitle">Iniciar Sesión</h2>
       <span className="title">[ A  R  R  A  Y ]</span>
       <form>

@@ -5,6 +5,7 @@ import { Home } from './pages/Home/Home';
 import { LogIn } from './pages/LogIn/LogIn';
 import { UserProfile } from './pages/UserProfile/UserProfile';
 import { SignIn } from './pages/SigIn/SigIn';
+import { Cursos } from './pages/Cursos/Cursos';
 function App() {
 
   return (
@@ -22,6 +23,7 @@ function App() {
           lenguages={["JavaScrpit","Python", "C++"]}
           experience="2 años o mas"/>}/>
           <Route path='/SigIn' element={<SignIn />} />
+          <Route path='/Cursos' element={<Cursos />} />
         </Routes>
       </Router>
     </div>

@@ -1,4 +1,3 @@
-import React from 'react';
 import "./UserProfile.css";
 
 export const UserProfile = ({photo, username, fullName, birthDate, lenguages, experience}) => {
