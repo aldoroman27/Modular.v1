@@ -53,3 +53,35 @@ def showuserInfo():
         return jsonify({'message': str(e)}), 500
 
 """
+
+#Definimos una nueva función para poder mostrar y obtner los lenguajes del usuario
+@showuserInfo_bp.route('/lenguajesUsuario',methods=['GET'])#Indicamos el endpoint y además el método GET
+def lenguajesUsuarios():#Definimos nuestra función para obtener los lenguajes del usuario
+    try:
+        id_usuario = 1 #Indicamos de momento por test que deberemos de buscar por el id = 1
+        conn = get_connection() #Hacemos la conexión con la base de datos
+        cursor = conn.cursor(dictionary=True)# Indicamos que la colección será en formato de diccionario
+        #Indicamos el query que vamos a ejecutar para extrar la información
+        query = """
+        SELECT l.nombreLenguaje
+        FROM lenguajes l 
+        JOIN usuarios_lenguajes ul ON l.idLenguaje = ul.idLenguaje
+        WHERE ul.idUsuario = %s
+        """
+        #Ejecutamos el query y pasamos como parametro %s nuestro id de usuario
+        cursor.execute(query, (id_usuario,))
+        lenguajes = cursor.fetchall()# Indicamos que el diccionario que obtenemos irá a nuestra variable lenguajes
+
+        print(lenguajes)
+        
+        cursor.close()#Cerramos nuestra conexión con la base de datos
+        conn.close()# Cerramos la consulta de nuestra base de datos
+
+        #Retornamos en formato json nuestro diccionario de lenguajes.
+        return jsonify(lenguajes),200
+
+    except Exception as e:
+        if conn:
+            print(str(e))
+            conn.close()
+        return jsonify({'message':'Error en la conexión con el servidor'}),500

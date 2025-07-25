@@ -4,7 +4,7 @@ from flask_cors import CORS
 from routes.showuserInfo import showuserInfo_bp
 
 #Creamos una instancia de Flask
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 #Creamos una instancia de CORS
 CORS(app)
 

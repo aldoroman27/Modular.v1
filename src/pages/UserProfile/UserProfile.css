@@ -46,3 +46,11 @@
   font-family: Arial, sans-serif;
   font-size: 14px;
 }
+
+.lenguajes-icons {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
