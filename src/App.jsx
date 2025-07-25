@@ -15,13 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path='/login' element={<LogIn/>}/>
-          <Route path='/Cuenta' element={<UserProfile
-          photo = "/amewing.jpg"
-          username ="cow27"
-          fullName="Aldo Román Del Muro"
-          birthDate="27/12/02"
-          lenguages={["JavaScrpit","Python", "C++"]}
-          experience="2 años o mas"/>}/>
+          <Route path='/Cuenta' element={<UserProfile/>}/>
           <Route path='/SigIn' element={<SignIn />} />
           <Route path='/Cursos' element={<Cursos />} />
         </Routes>
