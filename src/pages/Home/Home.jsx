@@ -1,4 +1,3 @@
-import React from 'react';
 import { BookOpen } from "phosphor-react";
 import "./Home.css";
 
@@ -11,18 +10,20 @@ export const Home = () => {
     { nombre: "JavaScript", logo: "Logos/javascript.png" },
     { nombre: "React", logo: "Logos/react.png" },
   ];
+
   return (
-      <main className="main-content">
-        <div className="hero">
-          <h2 className="welcome-title">¡Bienvenidos a [A R R A Y]!</h2>
-          <p className="description">
-            Aprende programación de forma divertida e interactiva, como si fuera un juego. Mejora tus habilidades paso a paso con retos, lecciones y recompensas.
-          </p>
-          <button className="btn btn-start">Empieza ahora</button>
-        </div>
+    <main className="main-content">
+      <section className="hero">
+        <h2 className="welcome-title">¡Bienvenidos a <span>[A R R A Y]</span>!</h2>
+        <p className="description">
+          Aprende programación de forma divertida e interactiva, como si fuera un juego. 
+          Mejora tus habilidades paso a paso con retos, lecciones y recompensas.
+        </p>
+        <button className="btn-start">🚀 Empieza ahora</button>
+      </section>
 
       <section className="courses">
-        <h3><BookOpen size={24} /> Cursos disponibles</h3>
+        <h3 className="courses-title"><BookOpen size={28} /> Cursos disponibles</h3>
         <div className="course-grid">
           {cursos.map((curso, idx) => (
             <div key={idx} className="course-card">
@@ -34,4 +35,4 @@ export const Home = () => {
       </section>
     </main>
   );
-}
+};
