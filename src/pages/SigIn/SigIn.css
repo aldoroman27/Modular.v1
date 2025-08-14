@@ -86,3 +86,49 @@ input::placeholder {
 .btn-registrar:hover {
   background-color: #4a90e2;
 }
+
+.mensaje-exito {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  color: #155724; /* Color de texto oscuro para legibilidad */
+  background-color: #d4edda; /* Fondo verde claro */
+  border: 1px solid #c3e6cb; /* Borde verde un poco más oscuro */
+  text-align: center;
+  font-weight: bold;
+  animation: fadeIn 0.5s ease-in-out; /* Animación sutil */
+}
+
+/* --- Contenedor para los Mensajes de Error --- */
+.errores {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  color: #721c24; /* Color de texto oscuro */
+  background-color: #f8d7da; /* Fondo rojo/rosa claro */
+  border: 1px solid #f5c6cb; /* Borde rojo un poco más oscuro */
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* --- Estilo para cada línea de error dentro del contenedor --- */
+.errores ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; /* Quita los puntos de la lista */
+  text-align: center;
+}
+
+.errores li {
+  margin-bottom: 5px; /* Espacio entre errores si hay varios */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

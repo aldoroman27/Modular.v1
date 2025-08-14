@@ -7,7 +7,7 @@ from routes.signin import sigin_bp
 #Creamos una instancia de Flask
 app = Flask(__name__, static_folder='static')
 #Creamos una instancia de CORS
-CORS(app, resources={r"/*":{"origins":"*"}}, supports_credentials=True)
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 
 #Definimos una ruta raíz de nuestro servidor

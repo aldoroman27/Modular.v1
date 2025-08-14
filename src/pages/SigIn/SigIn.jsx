@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "./SigIn.css";
 
@@ -13,6 +13,20 @@ export const SignIn = () => {
 
   const [mensajeExito, setMensajeExito] = useState("");
   const [errores, setErrores] = useState([]);
+  useEffect(() => {
+    // Si hay algún mensaje de error o de éxito...
+    if (errores.length > 0 || mensajeExito) {
+      // ...inicia un temporizador.
+      const timer = setTimeout(() => {
+        // Después de 4 segundos, limpia ambos mensajes.
+        setErrores([]);
+        setMensajeExito("");
+      }, 4000); // 4000 milisegundos = 4 segundos
+
+      // Función de limpieza: si el componente se desmonta, limpia el temporizador.
+      return () => clearTimeout(timer);
+    }
+  }, [errores, mensajeExito]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,22 +44,27 @@ export const SignIn = () => {
       return;
     }
 
+    const payload = {
+      nombreCompleto: formData.nombreCompleto,
+      correoElectronico: formData.correoElectronico,
+      nombreUsuario: formData.nombreUsuario,
+      password: formData.password,
+      confirmPassword: formData.confirmPassword
+    }
+    
+    console.log("Enviando el siguiente payload", JSON.stringify(payload, null,2));
     try {
+      console.log(formData);
         await axios.post(
         "http://localhost:5000/signin",
-        {
-          nombreCompleto: formData.nombreCompleto,
-          correoElectronico: formData.correoElectronico,
-          nombreUsuario: formData.nombreUsuario,
-          password: formData.password
-        },
+        payload,
         {
           headers: { "Content-Type": "application/json" }
         }
       );
 
       setMensajeExito("✅ Usuario registrado correctamente");
-      // Limpiar formulario
+      // Limpiamos el formulario
       setFormData({
         nombreCompleto: "",
         correoElectronico: "",

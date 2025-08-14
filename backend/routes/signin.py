@@ -16,28 +16,33 @@ from marshmallow import ValidationError
 from datetime import datetime
 
 registrarse_schema = SignInSchema()
-#Generamos una instancia de Bcrypt para poder encriptar las contraseñas bajo un formato
-bcrypt =  Bcrypt()
 #Definimos el Blueprint para poder usar la ruta dentro de nuestra app.py
 sigin_bp = Blueprint('sigin_bp', __name__)
 
-    
-
-
 #Definimos la ruta de nuestro bp, junto con los métodos que vamos a utilizar (POST y OPTIONS)
-@sigin_bp.route('/signin', methods=['POST'])
+@sigin_bp.route('/signin', methods=['POST', 'OPTIONS'])
 #Definimos la función para ingresar.
-def sign():
-    #Generamos un bloque Try para no "crashear" en caso de error
+def signIn():
+    # flask-cors debería manejar esto, pero lo haremos explícitamente para asegurar que funcione.
+    # Si la petición es OPTIONS, el navegador solo está pidiendo permiso.
+    # Respondemos con un OK (200) y dejamos que flask-cors añada los headers correctos.
+    if request.method == 'OPTIONS':
+        return jsonify({"status": "ok"}), 200
+
+    # Si la petición es POST, ejecutamos toda tu lógica original.
     try:
-        #Obtenemos la información que necesitamos de la petición enviada por el front.
+        bcrypt = Bcrypt()
         data = request.get_json()
-        #Verificamos que el registro sea válido, es decir que ningún campo esté vació.
+
+        # Verificamos si get_json() devolvió algo
+        if data is None:
+            return jsonify({'error': 'La petición debe contener un JSON'}), 400
+
         registro_validado = registrarse_schema.load(data)
         nivel = 1
-        #Vamos a hashear la cotraseña usando entonces bcrypt
         hashed_password = bcrypt.generate_password_hash(registro_validado['password']).decode('utf-8')
         fecha_registro = datetime.now().strftime("%Y-%m-%d")
+        
         conn = get_connection()
         cursor = conn.cursor()
         
@@ -46,15 +51,24 @@ def sign():
             VALUES (%s, %s, %s, %s, %s, %s)
         """
         
-        cursor.execute(query,(registro_validado['nombreCompleto'], registro_validado['nombreUsuario'],registro_validado['correoElectronico'],hashed_password,nivel,fecha_registro))
+        cursor.execute(query, (
+            registro_validado['nombreCompleto'],
+            registro_validado['nombreUsuario'],
+            registro_validado['correoElectronico'],
+            hashed_password,
+            nivel,
+            fecha_registro
+        ))
         conn.commit()
         
         cursor.close()
         conn.close()
         
-        return jsonify({'message':'Usuario registrado con éxito'}),201
+        return jsonify({'message': 'Usuario registrado con éxito'}), 201
         
     except ValidationError as err:
-        return  jsonify({'error':err.messages}),400
+        return jsonify({'error': err.messages}), 400
     except Exception as e:
-        return jsonify({'message':str(e)}),500
+        # Es buena práctica imprimir el error en el servidor para depurar
+        print(f"Error en /signin: {e}")
+        return jsonify({'message': str(e)}), 500
