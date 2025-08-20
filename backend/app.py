@@ -1,8 +1,8 @@
 #Importamos las librerías que utilizaremos para el back
 from flask import Flask, jsonify
 from flask_cors import CORS
-from routes.showuserInfo import showuserInfo_bp
-from routes.signin import sigin_bp
+from backend.routes.showUserinfo.showuserInfo import showuserInfo_bp
+from backend.routes.signin.signin import sigin_bp
 
 #Creamos una instancia de Flask
 app = Flask(__name__, static_folder='static')
