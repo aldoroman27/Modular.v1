@@ -2,9 +2,9 @@ from flask import Blueprint, request, jsonify #Importamos las herramientas de fl
 from flask_bcrypt import Bcrypt
 from dbconnect.dbConnect import get_connection
 import os #Este import nos ayudará en un futuro con el .env de nuestro backend
-import Schemas.loginschema as loginschema
+from Schemas.loginschema import loginSchema
 
-
+login_schema = loginSchema()
 bcrypt = Bcrypt() #Creamos una instancia de Bcrypt
 auth_bp = Blueprint('auth_bp', __name__)# Creamos una ruta para nuestro servidor usando Blueprint
 
@@ -21,13 +21,14 @@ def login():#Definimos nuestro método login
         if data is None:
             return jsonify({'message':'El contenido debe de ser un JSON'}),400
         #Validamos la información usando nuestro schema y la asignamos a una variable
-        data_validada =  loginschema.load(data)
+        data_validada =  login_schema.load(data)
+        correo_electronico = data_validada["correoElectronico"]
         #Definimos nuestro query que vamos a ejecutar, en este caso seleccionamos el correo y la contraseña (hasheada) que vamos a verificar
         query = """
             SELECT correoElectronico, contraseña FROM usuarios WHERE correoElectronico = %s
         """
         #Ejecutamos el query junto con la información que se necesita
-        cursor.execute(query, data_validada["correoElectronico"],)
+        cursor.execute(query, (correo_electronico,))
         
         usuario = cursor.fetchone()
         conn.close()

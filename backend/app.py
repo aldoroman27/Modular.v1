@@ -1,8 +1,10 @@
 #Importamos las librerías que utilizaremos para el back
 from flask import Flask, jsonify
 from flask_cors import CORS
-from backend.routes.showUserinfo.showuserInfo import showuserInfo_bp
-from backend.routes.signin.signin import sigin_bp
+from routes.showUserinfo.showuserInfo import showuserInfo_bp
+from routes.signin.signin import sigin_bp
+from routes.login.login import auth_bp
+from routes.login.login import auth_bp
 
 #Creamos una instancia de Flask
 app = Flask(__name__, static_folder='static')
@@ -21,6 +23,7 @@ def index():#Definimos una función para comprobar que está funcinando correcta
     
 app.register_blueprint(showuserInfo_bp)
 app.register_blueprint(sigin_bp)
+app.register_blueprint(auth_bp)
 
 if __name__ == '__main__':
     app.run(debug=True)

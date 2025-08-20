@@ -1,7 +1,11 @@
 import { BookOpen } from "phosphor-react";
 import "./Home.css";
+import {  useNavigate } from "react-router-dom";
+import { use } from "react";
 
 export const Home = () => {
+
+  const navigate = useNavigate();
   const cursos = [
     { nombre: "Python", logo: "Logos/python.png" },
     { nombre: "C#", logo: "Logos/csharp.png" },
@@ -11,6 +15,14 @@ export const Home = () => {
     { nombre: "React", logo: "Logos/react.png" },
   ];
 
+  const handleStart = () => {
+    navigate('/Cursos');
+  };
+
+  const handleTest = () => {
+    navigate('/Examenposicionamiento');
+  }
+
   return (
     <main className="main-content">
       <section className="hero">
@@ -19,7 +31,8 @@ export const Home = () => {
           Aprende programación de forma divertida e interactiva, como si fuera un juego. 
           Mejora tus habilidades paso a paso con retos, lecciones y recompensas.
         </p>
-        <button className="btn-start">🚀 Empieza ahora</button>
+        <button className="btn-start" onClick={handleStart}>🚀 Empieza ahora</button>
+        <button className="btn-examen" onClick={handleTest}>Empezar examen de ubicación</button>
       </section>
 
       <section className="courses">

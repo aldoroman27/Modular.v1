@@ -6,6 +6,7 @@ import { LogIn } from './pages/LogIn/LogIn';
 import { UserProfile } from './pages/UserProfile/UserProfile';
 import { SignIn } from './pages/SigIn/SigIn';
 import { Cursos } from './pages/Cursos/Cursos';
+import { examenPosicionamiento } from './pages/examenPosicionamiento/examenPosicionamiento';
 function App() {
 
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/Cuenta' element={<UserProfile/>}/>
           <Route path='/SigIn' element={<SignIn />} />
           <Route path='/Cursos' element={<Cursos />} />
+          <Route path='/Examenposicionamiento' element={<examenPosicionamiento/>}/>
         </Routes>
       </Router>
     </div>

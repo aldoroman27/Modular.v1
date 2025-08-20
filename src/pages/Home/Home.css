@@ -44,6 +44,22 @@
   transform: scale(1.05);
 }
 
+
+.btn-examen {
+  background: #4df704;
+  color: #333;
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-examen:hover {
+  transform: scale(1.05);
+}
+
 /* Courses section */
 .courses-title {
   display: flex;

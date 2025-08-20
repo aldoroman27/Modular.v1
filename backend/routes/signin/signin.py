@@ -31,6 +31,7 @@ def signIn():
 
     # Si la petición es POST, ejecutamos toda tu lógica original.
     try:
+        print("llegué aquí")
         bcrypt = Bcrypt()
         data = request.get_json()
 
@@ -45,12 +46,12 @@ def signIn():
         
         conn = get_connection()
         cursor = conn.cursor()
-        
+        print("Ando aquí mi pa")
         query = """
             INSERT INTO usuarios (nombreCompleto, nombreUsuario, correoElectronico, contraseña, nivel, fechaRegistro)
             VALUES (%s, %s, %s, %s, %s, %s)
         """
-        
+        print("Armé el query")
         cursor.execute(query, (
             registro_validado['nombreCompleto'],
             registro_validado['nombreUsuario'],
@@ -59,6 +60,7 @@ def signIn():
             nivel,
             fecha_registro
         ))
+        print("Envié el query")
         conn.commit()
         
         cursor.close()
