@@ -6,6 +6,7 @@ import { use } from "react";
 export const Home = () => {
 
   const navigate = useNavigate();
+  //Esta parte es solamente para mostrar los logos de algunos de los lenguajes de programación disponibles
   const cursos = [
     { nombre: "Python", logo: "Logos/python.png" },
     { nombre: "C#", logo: "Logos/csharp.png" },
@@ -15,6 +16,7 @@ export const Home = () => {
     { nombre: "React", logo: "Logos/react.png" },
   ];
 
+  //Esta parte que tenemos aquí es para navegar entre las diferentes páginas que tenemos. En este caso iremos a cursos.
   const handleStart = () => {
     navigate('/Cursos');
   };
